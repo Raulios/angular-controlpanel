@@ -153,11 +153,11 @@ exports.default = AppRun;
 "use strict";
 
 angular.module("templates", []).run(["$templateCache", function ($templateCache) {
+  $templateCache.put("home/home.html", "\n<div class=\"container-fluid\">\n	<div class=\"row\">\n		<div class=\"col-xs-12\">\n			<div class=\"jumbotron\">\n			  <h1>Hello, world!</h1>\n			  <p>...</p>\n			  <p><a class=\"btn btn-primary btn-lg\" href=\"#\" role=\"button\">Learn more</a></p>\n			</div>\n		</div>\n	</div>\n</div>\n");
   $templateCache.put("layout/app-view.html", "<app-header></app-header>\n\n<div id=\"wrapper\">\n	<app-sidenav></app-sidenav>\n	<div id=\"page-content-wrapper\">\n	    <div class=\"page-content\">\n			<div ui-view></div>\n		</div>\n	</div>\n</div>\n\n<app-footer></app-footer>");
   $templateCache.put("layout/footer.html", "");
   $templateCache.put("layout/header.html", "\n<nav class=\"navbar navbar-default navbar-fixed-top\" role=\"navigation\">\n	<div class=\"navbar-header\">\n		<button type=\"button\" class=\"navbar-toggle\" ng-click=\"$ctrl.isNavCollapsed = !$ctrl.isNavCollapsed\">\n			<span class=\"sr-only\">Toggle navigation</span>\n			<span class=\"icon-bar\"></span>\n			<span class=\"icon-bar\"></span>\n			<span class=\"icon-bar\"></span>\n		</button>\n		<a class=\"navbar-brand\" href=\"#\">{{$ctrl.appName}}</a>\n	</div>\n</nav>\n");
-  $templateCache.put("layout/sidenav.html", "<div id=\"sidebar-wrapper\">\n    <ul class=\"sidebar-nav\">\n        <li class=\"sidebar-brand\"><a href=\"#\">Home</a></li>\n        <li><a href=\"#\">Another link</a></li>\n        <li><a href=\"#\">Next link</a></li>\n        <li><a href=\"#\">Last link</a></li>\n    </ul>\n</div>");
-  $templateCache.put("home/home.html", "\n<div class=\"container-fluid\">\n	<div class=\"row\">\n		<div class=\"col-xs-12\">\n			<div class=\"jumbotron\">\n			  <h1>Hello, world!</h1>\n			  <p>...</p>\n			  <p><a class=\"btn btn-primary btn-lg\" href=\"#\" role=\"button\">Learn more</a></p>\n			</div>\n		</div>\n	</div>\n</div>\n");
+  $templateCache.put("layout/sidenav.html", "<div id=\"sidebar-wrapper\">\n    <ul class=\"sidebar-nav\">\n        <li class=\"sidebar-brand\"><a href=\"#\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Home</a></li>\n        <li><a href=\"#\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Another link</a></li>\n        <li><a href=\"#\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Next link</a></li>\n        <li><a href=\"#\"> <i class=\"fa fa-home\" aria-hidden=\"true\"></i> Last link</a></li>\n    </ul>\n</div>");
 }]);
 
 },{}],7:[function(require,module,exports){
