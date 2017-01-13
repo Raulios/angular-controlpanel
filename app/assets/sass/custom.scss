@@ -1,0 +1,18 @@
+$primary-color: #ffb036;
+$font-color: #ffffff;
+
+.navbar-default {
+	background-color: $primary-color;
+
+	.navbar-brand {
+		color: $font-color;
+	}
+
+	.navbar-nav {
+		li {
+			a {
+				color: $font-color;
+			}
+		}
+	}
+}

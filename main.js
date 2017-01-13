@@ -92,12 +92,14 @@ exports.default = componentsModule;
 },{"angular":22}],3:[function(require,module,exports){
 'use strict';
 
-AppConfig.$inject = ["$stateProvider", "$urlRouterProvider"];
+AppConfig.$inject = ["$stateProvider", "$urlRouterProvider", "$qProvider"];
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-function AppConfig($stateProvider, $urlRouterProvider) {
+function AppConfig($stateProvider, $urlRouterProvider, $qProvider) {
   'ngInject';
+
+  $qProvider.errorOnUnhandledRejections(false);
 
   $stateProvider.state('app', {
     abstract: true,

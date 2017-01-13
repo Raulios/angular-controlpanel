@@ -1,5 +1,7 @@
-function AppConfig($stateProvider, $urlRouterProvider) {
+function AppConfig($stateProvider, $urlRouterProvider, $qProvider) {
   'ngInject';
+
+  $qProvider.errorOnUnhandledRejections(false);
 
   $stateProvider
   .state('app', {
