@@ -62,7 +62,7 @@ _angular2.default.bootstrap(document, ['app'], {
   strictDi: true
 });
 
-},{"./components":2,"./config/app.config":3,"./config/app.constants":4,"./config/app.run":5,"./config/app.templates":6,"./home":9,"./layout":12,"./services":13,"angular":22,"angular-animate":15,"angular-touch":17,"angular-ui-bootstrap":19,"angular-ui-router":20}],2:[function(require,module,exports){
+},{"./components":2,"./config/app.config":3,"./config/app.constants":4,"./config/app.run":5,"./config/app.templates":6,"./home":9,"./layout":12,"./services":14,"angular":23,"angular-animate":16,"angular-touch":18,"angular-ui-bootstrap":20,"angular-ui-router":21}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -89,7 +89,7 @@ var componentsModule = _angular2.default.module('app.components', []);
 // Import your dependencies here
 exports.default = componentsModule;
 
-},{"angular":22}],3:[function(require,module,exports){
+},{"angular":23}],3:[function(require,module,exports){
 'use strict';
 
 AppConfig.$inject = ["$stateProvider", "$urlRouterProvider", "$qProvider"];
@@ -153,10 +153,11 @@ exports.default = AppRun;
 "use strict";
 
 angular.module("templates", []).run(["$templateCache", function ($templateCache) {
-  $templateCache.put("home/home.html", "\n<div class=\"container\">\n	<div class=\"row\">\n		<div class=\"col-xs-12\">\n			<div class=\"jumbotron\">\n			  <h1>Build successful!</h1>\n			  <p>You can start developing your awesome app!</p>\n			  <p><a class=\"btn btn-primary btn-lg\" href=\"https://github.com/Raulios/angular-es6-boilerplate\" role=\"button\" target=\"_blank\">See boilerplate on Github</a></p>\n			</div>\n		</div>\n	</div>\n</div>\n");
-  $templateCache.put("layout/app-view.html", "<app-header></app-header>\n\n<div ui-view></div>\n\n<app-footer></app-footer>");
+  $templateCache.put("home/home.html", "\n<div class=\"container-fluid\">\n	<div class=\"row\">\n		<div class=\"col-xs-12\">\n			<div class=\"jumbotron\">\n			  <h1>Hello, world!</h1>\n			  <p>...</p>\n			  <p><a class=\"btn btn-primary btn-lg\" href=\"#\" role=\"button\">Learn more</a></p>\n			</div>\n		</div>\n	</div>\n</div>\n");
+  $templateCache.put("layout/app-view.html", "<app-header></app-header>\n\n<div id=\"wrapper\">\n	<app-sidenav></app-sidenav>\n	<div id=\"page-content-wrapper\">\n	    <div class=\"page-content\">\n			<div ui-view></div>\n		</div>\n	</div>\n</div>\n\n<app-footer></app-footer>");
   $templateCache.put("layout/footer.html", "");
-  $templateCache.put("layout/header.html", "\n<nav class=\"navbar navbar-default\" role=\"navigation\">\n	<div class=\"navbar-header\">\n		<button type=\"button\" class=\"navbar-toggle\" ng-click=\"$ctrl.isNavCollapsed = !$ctrl.isNavCollapsed\">\n			<span class=\"sr-only\">Toggle navigation</span>\n			<span class=\"icon-bar\"></span>\n			<span class=\"icon-bar\"></span>\n			<span class=\"icon-bar\"></span>\n		</button>\n		<a class=\"navbar-brand\" href=\"#\">{{$ctrl.appName}}</a>\n	</div>\n	<div class=\"collapse navbar-collapse\" uib-collapse=\"$ctrl.isNavCollapsed\">\n		<ul class=\"nav navbar-nav\">\n			<li><a href=\"/\">Home</a></li>\n		</ul>\n	</div>\n</nav>\n");
+  $templateCache.put("layout/header.html", "\n<nav class=\"navbar navbar-default navbar-fixed-top\" role=\"navigation\">\n	<div class=\"navbar-header\">\n		<button type=\"button\" class=\"navbar-toggle\" ng-click=\"$ctrl.isNavCollapsed = !$ctrl.isNavCollapsed\">\n			<span class=\"sr-only\">Toggle navigation</span>\n			<span class=\"icon-bar\"></span>\n			<span class=\"icon-bar\"></span>\n			<span class=\"icon-bar\"></span>\n		</button>\n		<a class=\"navbar-brand\" href=\"#\">{{$ctrl.appName}}</a>\n	</div>\n	<div class=\"collapse navbar-collapse\" uib-collapse=\"$ctrl.isNavCollapsed\">\n		<ul class=\"nav navbar-nav\">\n			<li><a href=\"/\">Home</a></li>\n		</ul>\n	</div>\n</nav>\n");
+  $templateCache.put("layout/sidenav.html", "<div id=\"sidebar-wrapper\">\n    <ul class=\"sidebar-nav\">\n        <li class=\"sidebar-brand\"><a href=\"#\">Home</a></li>\n        <li><a href=\"#\">Another link</a></li>\n        <li><a href=\"#\">Next link</a></li>\n        <li><a href=\"#\">Last link</a></li>\n    </ul>\n</div>");
 }]);
 
 },{}],7:[function(require,module,exports){
@@ -224,7 +225,7 @@ homeModule.controller('HomeCtrl', _home4.default);
 
 exports.default = homeModule;
 
-},{"./home.config":7,"./home.controller":8,"angular":22}],10:[function(require,module,exports){
+},{"./home.config":7,"./home.controller":8,"angular":23}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -287,6 +288,10 @@ var _header = require('./header.component');
 
 var _header2 = _interopRequireDefault(_header);
 
+var _sidenav = require('./sidenav.component');
+
+var _sidenav2 = _interopRequireDefault(_sidenav);
+
 var _footer = require('./footer.component');
 
 var _footer2 = _interopRequireDefault(_footer);
@@ -296,11 +301,34 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var layoutModule = _angular2.default.module('app.layout', []);
 
 layoutModule.component('appHeader', _header2.default);
+layoutModule.component('appSidenav', _sidenav2.default);
 layoutModule.component('appFooter', _footer2.default);
 
 exports.default = layoutModule;
 
-},{"./footer.component":10,"./header.component":11,"angular":22}],13:[function(require,module,exports){
+},{"./footer.component":10,"./header.component":11,"./sidenav.component":13,"angular":23}],13:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var AppSidenavCtrl = function AppSidenavCtrl() {
+  'ngInject';
+
+  _classCallCheck(this, AppSidenavCtrl);
+};
+
+var AppSidenav = {
+  controller: AppSidenavCtrl,
+  templateUrl: 'layout/sidenav.html'
+};
+
+exports.default = AppSidenav;
+
+},{}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -325,7 +353,7 @@ var servicesModule = _angular2.default.module('app.services', []);
 // Import your dependencies here
 exports.default = servicesModule;
 
-},{"angular":22}],14:[function(require,module,exports){
+},{"angular":23}],15:[function(require,module,exports){
 /**
  * @license AngularJS v1.6.1
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -4481,11 +4509,11 @@ angular.module('ngAnimate', [], function initAngularHelpers() {
 
 })(window, window.angular);
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 require('./angular-animate');
 module.exports = 'ngAnimate';
 
-},{"./angular-animate":14}],16:[function(require,module,exports){
+},{"./angular-animate":15}],17:[function(require,module,exports){
 /**
  * @license AngularJS v1.6.1
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -5234,11 +5262,11 @@ makeSwipeDirective('ngSwipeRight', 1, 'swiperight');
 
 })(window, window.angular);
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 require('./angular-touch');
 module.exports = 'ngTouch';
 
-},{"./angular-touch":16}],18:[function(require,module,exports){
+},{"./angular-touch":17}],19:[function(require,module,exports){
 /*
  * angular-ui-bootstrap
  * http://angular-ui.github.io/bootstrap/
@@ -12954,12 +12982,12 @@ angular.module('ui.bootstrap.datepickerPopup').run(function() {!angular.$$csp().
 angular.module('ui.bootstrap.tooltip').run(function() {!angular.$$csp().noInlineStyle && !angular.$$uibTooltipCss && angular.element(document).find('head').prepend('<style type="text/css">[uib-tooltip-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-popup].tooltip.right-bottom > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-bottom > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-bottom > .tooltip-arrow,[uib-popover-popup].popover.top-left > .arrow,[uib-popover-popup].popover.top-right > .arrow,[uib-popover-popup].popover.bottom-left > .arrow,[uib-popover-popup].popover.bottom-right > .arrow,[uib-popover-popup].popover.left-top > .arrow,[uib-popover-popup].popover.left-bottom > .arrow,[uib-popover-popup].popover.right-top > .arrow,[uib-popover-popup].popover.right-bottom > .arrow,[uib-popover-html-popup].popover.top-left > .arrow,[uib-popover-html-popup].popover.top-right > .arrow,[uib-popover-html-popup].popover.bottom-left > .arrow,[uib-popover-html-popup].popover.bottom-right > .arrow,[uib-popover-html-popup].popover.left-top > .arrow,[uib-popover-html-popup].popover.left-bottom > .arrow,[uib-popover-html-popup].popover.right-top > .arrow,[uib-popover-html-popup].popover.right-bottom > .arrow,[uib-popover-template-popup].popover.top-left > .arrow,[uib-popover-template-popup].popover.top-right > .arrow,[uib-popover-template-popup].popover.bottom-left > .arrow,[uib-popover-template-popup].popover.bottom-right > .arrow,[uib-popover-template-popup].popover.left-top > .arrow,[uib-popover-template-popup].popover.left-bottom > .arrow,[uib-popover-template-popup].popover.right-top > .arrow,[uib-popover-template-popup].popover.right-bottom > .arrow{top:auto;bottom:auto;left:auto;right:auto;margin:0;}[uib-popover-popup].popover,[uib-popover-html-popup].popover,[uib-popover-template-popup].popover{display:block !important;}</style>'); angular.$$uibTooltipCss = true; });
 angular.module('ui.bootstrap.timepicker').run(function() {!angular.$$csp().noInlineStyle && !angular.$$uibTimepickerCss && angular.element(document).find('head').prepend('<style type="text/css">.uib-time input{width:50px;}</style>'); angular.$$uibTimepickerCss = true; });
 angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInlineStyle && !angular.$$uibTypeaheadCss && angular.element(document).find('head').prepend('<style type="text/css">[uib-typeahead-popup].dropdown-menu{display:block;}</style>'); angular.$$uibTypeaheadCss = true; });
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 require('./dist/ui-bootstrap-tpls');
 
 module.exports = 'ui.bootstrap';
 
-},{"./dist/ui-bootstrap-tpls":18}],20:[function(require,module,exports){
+},{"./dist/ui-bootstrap-tpls":19}],21:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.18
@@ -17499,7 +17527,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 /**
  * @license AngularJS v1.6.1
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -50482,8 +50510,8 @@ $provide.value("$locale", {
 })(window);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":21}]},{},[1]);
+},{"./angular":22}]},{},[1]);

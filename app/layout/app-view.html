@@ -1,5 +1,12 @@
 <app-header></app-header>
 
-<div ui-view></div>
+<div id="wrapper">
+	<app-sidenav></app-sidenav>
+	<div id="page-content-wrapper">
+	    <div class="page-content">
+			<div ui-view></div>
+		</div>
+	</div>
+</div>
 
 <app-footer></app-footer>
