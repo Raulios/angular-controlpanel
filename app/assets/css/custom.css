@@ -83,6 +83,10 @@ section {
   color: black;
   transition: all 0.4s ease 0s; }
 
+.btn-default {
+  background-color: #46BFBD;
+  color: white; }
+
 @media (max-width: 767px) {
   #wrapper {
     padding-left: 0; }

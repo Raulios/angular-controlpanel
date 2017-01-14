@@ -3,7 +3,7 @@ function AddAdvertisementConfig($stateProvider) {
 
   $stateProvider
   .state('app.add-advertisement', {
-    url: '/',
+    url: '/add-advertisement',
     controller: 'AddAdvertisementCtrl',
     controllerAs: '$ctrl',
     templateUrl: 'add-advertisement/add-advertisement.html',

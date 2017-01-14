@@ -130,6 +130,11 @@ section {
 	}
 }
 
+.btn-default {
+	background-color: $primary-color;
+	color: white;
+}
+
 @media (max-width:767px) {
 
     #wrapper {
