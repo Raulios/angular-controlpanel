@@ -189,7 +189,7 @@ function GraphsConfig($stateProvider) {
 exports.default = GraphsConfig;
 
 },{}],8:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -204,13 +204,13 @@ var GraphsCtrl = function GraphsCtrl(Advertisement) {
 
 		this.advertisements = Advertisement.getAll();
 
-		this.instrument_labels = ["Guitar", "Bass", "Keyboard", "Drums"];
+		this.instrument_labels = Advertisement.getInstrumentLabels();
 		this.instrument_data = [Advertisement.getInstrumentCount('Guitar'), Advertisement.getInstrumentCount('Bass'), Advertisement.getInstrumentCount('Keyboard'), Advertisement.getInstrumentCount('Drums')];
 
-		this.city_labels = ["Madrid", "Barcelona", "Málaga"];
+		this.city_labels = Advertisement.getCityLabels();
 		this.city_data = [Advertisement.getCityCount('Madrid'), Advertisement.getCityCount('Barcelona'), Advertisement.getCityCount('Málaga')];
 
-		this.genre_labels = ["Hard Rock", "Funk", "Prog Rock", "Metal", "Blues", "Jazz"];
+		this.genre_labels = Advertisement.getGenreLabels();
 		this.genre_data = [Advertisement.getGenreCount('Hard Rock'), Advertisement.getGenreCount('Funk'), Advertisement.getGenreCount('Prog Rock'), Advertisement.getGenreCount('Metal'), Advertisement.getGenreCount('Blues'), Advertisement.getGenreCount('Jazz')];
 };
 GraphsCtrl.$inject = ["Advertisement"];
@@ -513,6 +513,42 @@ var Advertisement = function () {
 		key: 'getAll',
 		value: function getAll() {
 			return _mockAdvertisements2.default;
+		}
+	}, {
+		key: 'getInstrumentLabels',
+		value: function getInstrumentLabels() {
+			var labels = [];
+			for (var i = 0; i < _mockAdvertisements2.default.length; i++) {
+				if (labels.indexOf(_mockAdvertisements2.default[i].instrument) == -1) {
+					labels.push(_mockAdvertisements2.default[i].instrument);
+				}
+			}
+
+			return labels;
+		}
+	}, {
+		key: 'getCityLabels',
+		value: function getCityLabels() {
+			var labels = [];
+			for (var i = 0; i < _mockAdvertisements2.default.length; i++) {
+				if (labels.indexOf(_mockAdvertisements2.default[i].city) == -1) {
+					labels.push(_mockAdvertisements2.default[i].city);
+				}
+			}
+
+			return labels;
+		}
+	}, {
+		key: 'getGenreLabels',
+		value: function getGenreLabels() {
+			var labels = [];
+			for (var i = 0; i < _mockAdvertisements2.default.length; i++) {
+				if (labels.indexOf(_mockAdvertisements2.default[i].genre) == -1) {
+					labels.push(_mockAdvertisements2.default[i].genre);
+				}
+			}
+
+			return labels;
 		}
 	}, {
 		key: 'getInstrumentCount',

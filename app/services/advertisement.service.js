@@ -10,6 +10,39 @@ export default class Advertisement {
 		return Advertisements;
 	}
 
+	getInstrumentLabels() {
+		var labels = [];
+		for(let i=0; i<Advertisements.length; i++) {
+			if(labels.indexOf(Advertisements[i].instrument) == -1) {
+				labels.push(Advertisements[i].instrument);
+			}
+		}
+
+		return labels;
+	}
+
+	getCityLabels() {
+		var labels = [];
+		for(let i=0; i<Advertisements.length; i++) {
+			if(labels.indexOf(Advertisements[i].city) == -1) {
+				labels.push(Advertisements[i].city);
+			}
+		}
+
+		return labels;
+	}
+
+	getGenreLabels() {
+		var labels = [];
+		for(let i=0; i<Advertisements.length; i++) {
+			if(labels.indexOf(Advertisements[i].genre) == -1) {
+				labels.push(Advertisements[i].genre);
+			}
+		}
+
+		return labels;
+	}
+
 	getInstrumentCount(instrument) {
 		var counter = 0;
 		for(let i=0; i<Advertisements.length; i++) {

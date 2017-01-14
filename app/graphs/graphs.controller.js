@@ -4,7 +4,7 @@ class GraphsCtrl {
 
     this.advertisements = Advertisement.getAll();
 
-    this.instrument_labels = ["Guitar", "Bass", "Keyboard", "Drums"];
+    this.instrument_labels = Advertisement.getInstrumentLabels();
   	this.instrument_data = [
 		Advertisement.getInstrumentCount('Guitar'), 
 		Advertisement.getInstrumentCount('Bass'), 
@@ -12,14 +12,14 @@ class GraphsCtrl {
 		Advertisement.getInstrumentCount('Drums')
 	];
 
-    this.city_labels = ["Madrid", "Barcelona", "Málaga"];
+    this.city_labels = Advertisement.getCityLabels();
   	this.city_data = [
 		Advertisement.getCityCount('Madrid'), 
 		Advertisement.getCityCount('Barcelona'), 
 		Advertisement.getCityCount('Málaga')
 	];
 
-	this.genre_labels = ["Hard Rock", "Funk", "Prog Rock", "Metal", "Blues", "Jazz"];
+	this.genre_labels = Advertisement.getGenreLabels();
 	this.genre_data = [
 		Advertisement.getGenreCount('Hard Rock'), 
 		Advertisement.getGenreCount('Funk'), 
