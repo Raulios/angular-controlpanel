@@ -1,4 +1,4 @@
-$primary-color: #ffb036;
+$primary-color: #46BFBD;
 $secondary-color: #ffffff;
 $light-grey: #e5e5e5;
 $dark-grey: #7d7d7d;
@@ -81,7 +81,7 @@ section {
 		a:hover {
 			background-color: $primary-color;
 			border-left: 10px solid $dark-grey;
-			color: black;
+			color: white;
 			text-decoration: none;
 			transition: all 0.4s ease 0s;
 		}
@@ -89,7 +89,7 @@ section {
 		.active {
 			background-color: $primary-color;
 			border-left: 10px solid $dark-grey;
-			color: black;
+			color: white;
 			text-decoration: none;
 		}
 	}
@@ -122,8 +122,8 @@ section {
 		}
 
 		tr:hover {
-			background-color: $primary-color;
-			border-left: 10px solid $dark-grey;
+			background-color: $light-grey;
+			border-left: 10px solid $primary-color;
 			color: black;
 			transition: all 0.4s ease 0s;
 		}
