@@ -159,7 +159,7 @@ exports.default = AppRun;
 "use strict";
 
 angular.module("templates", []).run(["$templateCache", function ($templateCache) {
-  $templateCache.put("graphs/graphs.html", "<section>\n	<div class=\"container-fluid\">\n		<div class=\"row\">\n			<div class=\"col-xs-12\">\n				The graphs tho\n			</div>\n		</div>\n	</div>\n</section>");
+  $templateCache.put("graphs/graphs.html", "<section>\n	<div class=\"container-fluid\">\n		<h1 class=\"page-header\">Advertisement count</h1>\n		<div class=\"row\">\n			<div class=\"col-md-4\">\n				<div class=\"panel panel-default\">\n			  		<div class=\"panel-heading\">\n				    	<h3 class=\"panel-title\">By Instrument</h3>\n				  	</div>\n				  	<div class=\"panel-body\">\n						<canvas id=\"doughnut\" class=\"chart chart-doughnut\"\n						  chart-data=\"$ctrl.instrument_data\" chart-labels=\"$ctrl.instrument_labels\">\n						</canvas> \n					</div>\n				</div>\n			</div>\n			<div class=\"col-md-4\">\n				<div class=\"panel panel-default\">\n			  		<div class=\"panel-heading\">\n				    	<h3 class=\"panel-title\">By Genre</h3>\n				  	</div>\n				  	<div class=\"panel-body\">\n						<canvas id=\"doughnut2\" class=\"chart chart-doughnut\"\n						  chart-data=\"$ctrl.genre_data\" chart-labels=\"$ctrl.genre_labels\">\n						</canvas> \n					</div>\n				</div>\n			</div>\n			<div class=\"col-md-4\">\n				<div class=\"panel panel-default\">\n			  		<div class=\"panel-heading\">\n				    	<h3 class=\"panel-title\">By City</h3>\n				  	</div>\n				  	<div class=\"panel-body\">\n						<canvas id=\"doughnut3\" class=\"chart chart-doughnut\"\n						  chart-data=\"$ctrl.city_data\" chart-labels=\"$ctrl.city_labels\">\n						</canvas> \n					</div>\n				</div>\n			</div>\n		</div>\n	</div>\n</section>");
   $templateCache.put("home/home.html", "\n<section>\n	<div class=\"container-fluid\">\n		<div class=\"row\">\n			<div class=\"col-xs-12\">\n				<input type=\"text\" ng-model=\"$ctrl.query\" class=\"form-control search-input\" placeholder=\"Search...\">\n			</div>\n		</div>\n		<div class=\"row\">\n			<div class=\"col-xs-12\">\n				<div class=\"panel panel-default\">\n			  		<div class=\"panel-heading\">\n				    	<h3 class=\"panel-title\">Advertisements</h3>\n				  	</div>\n				  	<div class=\"panel-body\">\n						<table class=\"table\">\n							<thead>\n								<tr>\n									<th>\n										Instrument\n									</th>\n									<th>\n										Genre\n									</th>\n									<th>\n										City\n									</th>\n									<th>\n										Country\n									</th>\n								</tr>\n							</thead>\n							<tbody>\n								<tr ng-repeat=\"ad in $ctrl.advertisements | filter:$ctrl.query\">\n									<td>\n										{{ ad.instrument }}\n									</td>\n									<td>\n										{{ ad.genre }}\n									</td>\n									<td>\n										{{ ad.city }}\n									</td>\n									<td>\n										{{ ad.country }}\n									</td>\n								</tr>\n							</tbody>\n						</table>\n					</div>\n				</div>\n			</div>\n		</div>\n	</div>\n</section>\n");
   $templateCache.put("layout/app-view.html", "<app-header></app-header>\n\n<div id=\"wrapper\">\n	<app-sidenav></app-sidenav>\n	<div id=\"page-content-wrapper\">\n	    <div class=\"page-content\">\n			<div ui-view></div>\n		</div>\n	</div>\n</div>\n\n<app-footer></app-footer>");
   $templateCache.put("layout/footer.html", "");
@@ -189,20 +189,29 @@ function GraphsConfig($stateProvider) {
 exports.default = GraphsConfig;
 
 },{}],8:[function(require,module,exports){
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+		value: true
 });
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var GraphsCtrl = function GraphsCtrl(Advertisement) {
-  'ngInject';
+		'ngInject';
 
-  _classCallCheck(this, GraphsCtrl);
+		_classCallCheck(this, GraphsCtrl);
 
-  this.advertisements = Advertisement.getAll();
+		this.advertisements = Advertisement.getAll();
+
+		this.instrument_labels = ["Guitar", "Bass", "Keyboard", "Drums"];
+		this.instrument_data = [Advertisement.getInstrumentCount('Guitar'), Advertisement.getInstrumentCount('Bass'), Advertisement.getInstrumentCount('Keyboard'), Advertisement.getInstrumentCount('Drums')];
+
+		this.city_labels = ["Madrid", "Barcelona", "Málaga"];
+		this.city_data = [Advertisement.getCityCount('Madrid'), Advertisement.getCityCount('Barcelona'), Advertisement.getCityCount('Málaga')];
+
+		this.genre_labels = ["Hard Rock", "Funk", "Prog Rock", "Metal", "Blues", "Jazz"];
+		this.genre_data = [Advertisement.getGenreCount('Hard Rock'), Advertisement.getGenreCount('Funk'), Advertisement.getGenreCount('Prog Rock'), Advertisement.getGenreCount('Metal'), Advertisement.getGenreCount('Blues'), Advertisement.getGenreCount('Jazz')];
 };
 GraphsCtrl.$inject = ["Advertisement"];
 
@@ -504,6 +513,39 @@ var Advertisement = function () {
 		key: 'getAll',
 		value: function getAll() {
 			return _mockAdvertisements2.default;
+		}
+	}, {
+		key: 'getInstrumentCount',
+		value: function getInstrumentCount(instrument) {
+			var counter = 0;
+			for (var i = 0; i < _mockAdvertisements2.default.length; i++) {
+				if (_mockAdvertisements2.default[i].instrument == instrument) {
+					counter++;
+				}
+			}
+			return counter;
+		}
+	}, {
+		key: 'getCityCount',
+		value: function getCityCount(city) {
+			var counter = 0;
+			for (var i = 0; i < _mockAdvertisements2.default.length; i++) {
+				if (_mockAdvertisements2.default[i].city == city) {
+					counter++;
+				}
+			}
+			return counter;
+		}
+	}, {
+		key: 'getGenreCount',
+		value: function getGenreCount(genre) {
+			var counter = 0;
+			for (var i = 0; i < _mockAdvertisements2.default.length; i++) {
+				if (_mockAdvertisements2.default[i].genre == genre) {
+					counter++;
+				}
+			}
+			return counter;
 		}
 	}]);
 

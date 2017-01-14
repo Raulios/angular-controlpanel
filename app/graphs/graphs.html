@@ -1,8 +1,42 @@
 <section>
 	<div class="container-fluid">
+		<h1 class="page-header">Advertisement count</h1>
 		<div class="row">
-			<div class="col-xs-12">
-				The graphs tho
+			<div class="col-md-4">
+				<div class="panel panel-default">
+			  		<div class="panel-heading">
+				    	<h3 class="panel-title">By Instrument</h3>
+				  	</div>
+				  	<div class="panel-body">
+						<canvas id="doughnut" class="chart chart-doughnut"
+						  chart-data="$ctrl.instrument_data" chart-labels="$ctrl.instrument_labels">
+						</canvas> 
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+			  		<div class="panel-heading">
+				    	<h3 class="panel-title">By Genre</h3>
+				  	</div>
+				  	<div class="panel-body">
+						<canvas id="doughnut2" class="chart chart-doughnut"
+						  chart-data="$ctrl.genre_data" chart-labels="$ctrl.genre_labels">
+						</canvas> 
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+			  		<div class="panel-heading">
+				    	<h3 class="panel-title">By City</h3>
+				  	</div>
+				  	<div class="panel-body">
+						<canvas id="doughnut3" class="chart chart-doughnut"
+						  chart-data="$ctrl.city_data" chart-labels="$ctrl.city_labels">
+						</canvas> 
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
