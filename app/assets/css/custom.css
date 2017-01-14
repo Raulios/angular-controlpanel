@@ -66,6 +66,13 @@ section {
   font-size: 20px;
   border-radius: 25px; }
 
+.panel {
+  margin-top: 20px; }
+
+.panel-default .panel-heading {
+  background-color: #ffb036;
+  color: #ffffff; }
+
 .table tbody tr td {
   line-height: 3.5;
   border-top: none; }

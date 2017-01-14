@@ -101,11 +101,20 @@ section {
 	border-radius: 25px;
 }
 
+.panel {
+	margin-top: 20px;
+}
+
+.panel-default {
+	.panel-heading {
+		background-color: $primary-color;
+		color: $secondary-color;
+	}
+}
+
 .table {
 	tbody {
 		tr {
-			
-
 			td {
 				line-height: 3.5;
 				border-top: none;

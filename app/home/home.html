@@ -8,40 +8,47 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
-				<table class="table">
-					<thead>
-						<tr>
-							<th>
-								Instrument
-							</th>
-							<th>
-								Genre
-							</th>
-							<th>
-								City
-							</th>
-							<th>
-								Country
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="ad in $ctrl.advertisements | filter:$ctrl.query">
-							<td>
-								{{ ad.instrument }}
-							</td>
-							<td>
-								{{ ad.genre }}
-							</td>
-							<td>
-								{{ ad.city }}
-							</td>
-							<td>
-								{{ ad.country }}
-							</td>
-						</tr>
-					</tbody>
-				</table>
+				<div class="panel panel-default">
+			  		<div class="panel-heading">
+				    	<h3 class="panel-title">Advertisements</h3>
+				  	</div>
+				  	<div class="panel-body">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>
+										Instrument
+									</th>
+									<th>
+										Genre
+									</th>
+									<th>
+										City
+									</th>
+									<th>
+										Country
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="ad in $ctrl.advertisements | filter:$ctrl.query">
+									<td>
+										{{ ad.instrument }}
+									</td>
+									<td>
+										{{ ad.genre }}
+									</td>
+									<td>
+										{{ ad.city }}
+									</td>
+									<td>
+										{{ ad.country }}
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
