@@ -3,7 +3,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-12">
-				<input type="text" class="form-control search-input" placeholder="Search...">
+				<input type="text" ng-model="$ctrl.query" class="form-control search-input" placeholder="Search...">
 			</div>
 		</div>
 		<div class="row">
@@ -26,7 +26,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="ad in $ctrl.advertisements">
+						<tr ng-repeat="ad in $ctrl.advertisements | filter:$ctrl.query">
 							<td>
 								{{ ad.instrument }}
 							</td>
