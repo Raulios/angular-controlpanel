@@ -39,5 +39,45 @@
 				</div>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="panel panel-default">
+			  		<div class="panel-heading">
+				    	<h3 class="panel-title">Comparison by Instrument Graph</h3>
+				  	</div>
+				  	<div class="panel-body">
+						<canvas id="bar" class="chart chart-bar"
+						  chart-data="$ctrl.instrument_data" chart-labels="$ctrl.instrument_labels" >
+						</canvas>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="panel panel-default">
+			  		<div class="panel-heading">
+				    	<h3 class="panel-title">Comparison by Genre Graph</h3>
+				  	</div>
+				  	<div class="panel-body">
+						<canvas id="bar" class="chart chart-bar"
+						  chart-data="$ctrl.genre_data" chart-labels="$ctrl.genre_labels">
+						</canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="panel panel-default">
+			  		<div class="panel-heading">
+				    	<h3 class="panel-title">Comparison by City Area Chart</h3>
+				  	</div>
+				  	<div class="panel-body">
+				  		<canvas id="polar-area" class="chart chart-polar-area"
+						  chart-data="$ctrl.city_data" chart-labels="$ctrl.city_labels" chart-options="options">
+						</canvas> 
+				  	</div>
+			  	</div>
+		  	</div>
+	  	</div>
 	</div>
 </section>

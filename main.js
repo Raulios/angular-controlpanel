@@ -159,12 +159,12 @@ exports.default = AppRun;
 "use strict";
 
 angular.module("templates", []).run(["$templateCache", function ($templateCache) {
-  $templateCache.put("home/home.html", "\n<section>\n	<div class=\"container-fluid\">\n		<div class=\"row\">\n			<div class=\"col-xs-12\">\n				<input type=\"text\" ng-model=\"$ctrl.query\" class=\"form-control search-input\" placeholder=\"Search...\">\n			</div>\n		</div>\n		<div class=\"row\">\n			<div class=\"col-xs-12\">\n				<div class=\"panel panel-default\">\n			  		<div class=\"panel-heading\">\n				    	<h3 class=\"panel-title\">Advertisements</h3>\n				  	</div>\n				  	<div class=\"panel-body\">\n						<table class=\"table\">\n							<thead>\n								<tr>\n									<th>\n										Instrument\n									</th>\n									<th>\n										Genre\n									</th>\n									<th>\n										City\n									</th>\n									<th>\n										Country\n									</th>\n								</tr>\n							</thead>\n							<tbody>\n								<tr ng-repeat=\"ad in $ctrl.advertisements | filter:$ctrl.query\">\n									<td>\n										{{ ad.instrument }}\n									</td>\n									<td>\n										{{ ad.genre }}\n									</td>\n									<td>\n										{{ ad.city }}\n									</td>\n									<td>\n										{{ ad.country }}\n									</td>\n								</tr>\n							</tbody>\n						</table>\n					</div>\n				</div>\n			</div>\n		</div>\n	</div>\n</section>\n");
-  $templateCache.put("graphs/graphs.html", "<section>\n	<div class=\"container-fluid\">\n		<h1 class=\"page-header\">Advertisement count</h1>\n		<div class=\"row\">\n			<div class=\"col-md-4\">\n				<div class=\"panel panel-default\">\n			  		<div class=\"panel-heading\">\n				    	<h3 class=\"panel-title\">By Instrument</h3>\n				  	</div>\n				  	<div class=\"panel-body\">\n						<canvas id=\"doughnut\" class=\"chart chart-doughnut\"\n						  chart-data=\"$ctrl.instrument_data\" chart-labels=\"$ctrl.instrument_labels\">\n						</canvas> \n					</div>\n				</div>\n			</div>\n			<div class=\"col-md-4\">\n				<div class=\"panel panel-default\">\n			  		<div class=\"panel-heading\">\n				    	<h3 class=\"panel-title\">By Genre</h3>\n				  	</div>\n				  	<div class=\"panel-body\">\n						<canvas id=\"doughnut2\" class=\"chart chart-doughnut\"\n						  chart-data=\"$ctrl.genre_data\" chart-labels=\"$ctrl.genre_labels\">\n						</canvas> \n					</div>\n				</div>\n			</div>\n			<div class=\"col-md-4\">\n				<div class=\"panel panel-default\">\n			  		<div class=\"panel-heading\">\n				    	<h3 class=\"panel-title\">By City</h3>\n				  	</div>\n				  	<div class=\"panel-body\">\n						<canvas id=\"doughnut3\" class=\"chart chart-doughnut\"\n						  chart-data=\"$ctrl.city_data\" chart-labels=\"$ctrl.city_labels\">\n						</canvas> \n					</div>\n				</div>\n			</div>\n		</div>\n	</div>\n</section>");
+  $templateCache.put("graphs/graphs.html", "<section>\n	<div class=\"container-fluid\">\n		<h1 class=\"page-header\">Advertisement count</h1>\n		<div class=\"row\">\n			<div class=\"col-md-4\">\n				<div class=\"panel panel-default\">\n			  		<div class=\"panel-heading\">\n				    	<h3 class=\"panel-title\">By Instrument</h3>\n				  	</div>\n				  	<div class=\"panel-body\">\n						<canvas id=\"doughnut\" class=\"chart chart-doughnut\"\n						  chart-data=\"$ctrl.instrument_data\" chart-labels=\"$ctrl.instrument_labels\">\n						</canvas> \n					</div>\n				</div>\n			</div>\n			<div class=\"col-md-4\">\n				<div class=\"panel panel-default\">\n			  		<div class=\"panel-heading\">\n				    	<h3 class=\"panel-title\">By Genre</h3>\n				  	</div>\n				  	<div class=\"panel-body\">\n						<canvas id=\"doughnut2\" class=\"chart chart-doughnut\"\n						  chart-data=\"$ctrl.genre_data\" chart-labels=\"$ctrl.genre_labels\">\n						</canvas> \n					</div>\n				</div>\n			</div>\n			<div class=\"col-md-4\">\n				<div class=\"panel panel-default\">\n			  		<div class=\"panel-heading\">\n				    	<h3 class=\"panel-title\">By City</h3>\n				  	</div>\n				  	<div class=\"panel-body\">\n						<canvas id=\"doughnut3\" class=\"chart chart-doughnut\"\n						  chart-data=\"$ctrl.city_data\" chart-labels=\"$ctrl.city_labels\">\n						</canvas> \n					</div>\n				</div>\n			</div>\n		</div>\n		<div class=\"row\">\n			<div class=\"col-md-6\">\n				<div class=\"panel panel-default\">\n			  		<div class=\"panel-heading\">\n				    	<h3 class=\"panel-title\">Comparison by Instrument Graph</h3>\n				  	</div>\n				  	<div class=\"panel-body\">\n						<canvas id=\"bar\" class=\"chart chart-bar\"\n						  chart-data=\"$ctrl.instrument_data\" chart-labels=\"$ctrl.instrument_labels\" >\n						</canvas>\n					</div>\n				</div>\n			</div>\n			<div class=\"col-md-6\">\n				<div class=\"panel panel-default\">\n			  		<div class=\"panel-heading\">\n				    	<h3 class=\"panel-title\">Comparison by Genre Graph</h3>\n				  	</div>\n				  	<div class=\"panel-body\">\n						<canvas id=\"bar\" class=\"chart chart-bar\"\n						  chart-data=\"$ctrl.genre_data\" chart-labels=\"$ctrl.genre_labels\">\n						</canvas>\n					</div>\n				</div>\n			</div>\n		</div>\n		<div class=\"row\">\n			<div class=\"col-xs-12\">\n				<div class=\"panel panel-default\">\n			  		<div class=\"panel-heading\">\n				    	<h3 class=\"panel-title\">Comparison by City Area Chart</h3>\n				  	</div>\n				  	<div class=\"panel-body\">\n				  		<canvas id=\"polar-area\" class=\"chart chart-polar-area\"\n						  chart-data=\"$ctrl.city_data\" chart-labels=\"$ctrl.city_labels\" chart-options=\"options\">\n						</canvas> \n				  	</div>\n			  	</div>\n		  	</div>\n	  	</div>\n	</div>\n</section>");
   $templateCache.put("layout/app-view.html", "<app-header></app-header>\n\n<div id=\"wrapper\">\n	<app-sidenav></app-sidenav>\n	<div id=\"page-content-wrapper\">\n	    <div class=\"page-content\">\n			<div ui-view></div>\n		</div>\n	</div>\n</div>\n\n<app-footer></app-footer>");
   $templateCache.put("layout/footer.html", "");
   $templateCache.put("layout/header.html", "\n<nav class=\"navbar navbar-default navbar-fixed-top\" role=\"navigation\">\n	<div class=\"navbar-header\">\n		<button type=\"button\" class=\"navbar-toggle\" ng-click=\"$ctrl.isNavCollapsed = !$ctrl.isNavCollapsed\">\n			<span class=\"sr-only\">Toggle navigation</span>\n			<span class=\"icon-bar\"></span>\n			<span class=\"icon-bar\"></span>\n			<span class=\"icon-bar\"></span>\n		</button>\n		<a class=\"navbar-brand\" href=\"#\">{{$ctrl.appName}}</a>\n	</div>\n</nav>\n");
   $templateCache.put("layout/sidenav.html", "<div id=\"sidebar-wrapper\">\n    <ul class=\"sidebar-nav\">\n        <li><a ui-sref=\"app.home\" ui-sref-active=\"active\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i> Search Filter</a></li>\n        <li><a ui-sref=\"app.graphs\" ui-sref-active=\"active\"><i class=\"fa fa-bar-chart\" aria-hidden=\"true\"></i> Charts & Graphs</a></li>\n        <li><a href=\"#\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Next link</a></li>\n        <li><a href=\"#\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Last link</a></li>\n    </ul>\n</div>");
+  $templateCache.put("home/home.html", "\n<section>\n	<div class=\"container-fluid\">\n		<div class=\"row\">\n			<div class=\"col-xs-12\">\n				<input type=\"text\" ng-model=\"$ctrl.query\" class=\"form-control search-input\" placeholder=\"Search...\">\n			</div>\n		</div>\n		<div class=\"row\">\n			<div class=\"col-xs-12\">\n				<div class=\"panel panel-default\">\n			  		<div class=\"panel-heading\">\n				    	<h3 class=\"panel-title\">Advertisements</h3>\n				  	</div>\n				  	<div class=\"panel-body\">\n						<table class=\"table\">\n							<thead>\n								<tr>\n									<th>\n										Instrument\n									</th>\n									<th>\n										Genre\n									</th>\n									<th>\n										City\n									</th>\n									<th>\n										Country\n									</th>\n								</tr>\n							</thead>\n							<tbody>\n								<tr ng-repeat=\"ad in $ctrl.advertisements | filter:$ctrl.query\">\n									<td>\n										{{ ad.instrument }}\n									</td>\n									<td>\n										{{ ad.genre }}\n									</td>\n									<td>\n										{{ ad.city }}\n									</td>\n									<td>\n										{{ ad.country }}\n									</td>\n								</tr>\n							</tbody>\n						</table>\n					</div>\n				</div>\n			</div>\n		</div>\n	</div>\n</section>\n");
 }]);
 
 },{}],7:[function(require,module,exports){
@@ -192,26 +192,26 @@ exports.default = GraphsConfig;
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-		value: true
+  value: true
 });
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var GraphsCtrl = function GraphsCtrl(Advertisement) {
-		'ngInject';
+  'ngInject';
 
-		_classCallCheck(this, GraphsCtrl);
+  _classCallCheck(this, GraphsCtrl);
 
-		this.advertisements = Advertisement.getAll();
+  this.advertisements = Advertisement.getAll();
 
-		this.instrument_labels = Advertisement.getInstrumentLabels();
-		this.instrument_data = [Advertisement.getInstrumentCount('Guitar'), Advertisement.getInstrumentCount('Bass'), Advertisement.getInstrumentCount('Keyboard'), Advertisement.getInstrumentCount('Drums')];
+  this.instrument_labels = Advertisement.getInstrumentLabels();
+  this.instrument_data = Advertisement.getInstrumentDataCount();
 
-		this.city_labels = Advertisement.getCityLabels();
-		this.city_data = [Advertisement.getCityCount('Madrid'), Advertisement.getCityCount('Barcelona'), Advertisement.getCityCount('Málaga')];
+  this.city_labels = Advertisement.getCityLabels();
+  this.city_data = Advertisement.getCityDataCount();
 
-		this.genre_labels = Advertisement.getGenreLabels();
-		this.genre_data = [Advertisement.getGenreCount('Hard Rock'), Advertisement.getGenreCount('Funk'), Advertisement.getGenreCount('Prog Rock'), Advertisement.getGenreCount('Metal'), Advertisement.getGenreCount('Blues'), Advertisement.getGenreCount('Jazz')];
+  this.genre_labels = Advertisement.getGenreLabels();
+  this.genre_data = Advertisement.getGenreDataCount();
 };
 GraphsCtrl.$inject = ["Advertisement"];
 
@@ -551,37 +551,55 @@ var Advertisement = function () {
 			return labels;
 		}
 	}, {
-		key: 'getInstrumentCount',
-		value: function getInstrumentCount(instrument) {
-			var counter = 0;
-			for (var i = 0; i < _mockAdvertisements2.default.length; i++) {
-				if (_mockAdvertisements2.default[i].instrument == instrument) {
-					counter++;
+		key: 'getInstrumentDataCount',
+		value: function getInstrumentDataCount() {
+			var data = [];
+			var labels = this.getInstrumentLabels();
+
+			for (var i = 0; i < labels.length; i++) {
+				var counter = 0;
+				for (var j = 0; j < _mockAdvertisements2.default.length; j++) {
+					if (_mockAdvertisements2.default[j].instrument == labels[i]) {
+						counter++;
+					}
 				}
+				data.push(counter);
 			}
-			return counter;
+			return data;
 		}
 	}, {
-		key: 'getCityCount',
-		value: function getCityCount(city) {
-			var counter = 0;
-			for (var i = 0; i < _mockAdvertisements2.default.length; i++) {
-				if (_mockAdvertisements2.default[i].city == city) {
-					counter++;
+		key: 'getCityDataCount',
+		value: function getCityDataCount() {
+			var data = [];
+			var labels = this.getCityLabels();
+
+			for (var i = 0; i < labels.length; i++) {
+				var counter = 0;
+				for (var j = 0; j < _mockAdvertisements2.default.length; j++) {
+					if (_mockAdvertisements2.default[j].city == labels[i]) {
+						counter++;
+					}
 				}
+				data.push(counter);
 			}
-			return counter;
+			return data;
 		}
 	}, {
-		key: 'getGenreCount',
-		value: function getGenreCount(genre) {
-			var counter = 0;
-			for (var i = 0; i < _mockAdvertisements2.default.length; i++) {
-				if (_mockAdvertisements2.default[i].genre == genre) {
-					counter++;
+		key: 'getGenreDataCount',
+		value: function getGenreDataCount() {
+			var data = [];
+			var labels = this.getGenreLabels();
+
+			for (var i = 0; i < labels.length; i++) {
+				var counter = 0;
+				for (var j = 0; j < _mockAdvertisements2.default.length; j++) {
+					if (_mockAdvertisements2.default[j].genre == labels[i]) {
+						counter++;
+					}
 				}
+				data.push(counter);
 			}
-			return counter;
+			return data;
 		}
 	}]);
 

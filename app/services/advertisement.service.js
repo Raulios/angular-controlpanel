@@ -43,34 +43,52 @@ export default class Advertisement {
 		return labels;
 	}
 
-	getInstrumentCount(instrument) {
-		var counter = 0;
-		for(let i=0; i<Advertisements.length; i++) {
-			if(Advertisements[i].instrument == instrument) {
-				counter++;
+	getInstrumentDataCount() {
+		var data = [];
+		var labels = this.getInstrumentLabels();
+
+		for(var i=0; i<labels.length; i++) {
+			var counter = 0;
+			for(var j=0; j<Advertisements.length; j++) {
+				if(Advertisements[j].instrument == labels[i]) {
+					counter++;
+				}
 			}
+			data.push(counter);
 		}
-		return counter;
+		return data;
 	}
 
-	getCityCount(city) {
-		var counter = 0;
-		for(let i=0; i<Advertisements.length; i++) {
-			if(Advertisements[i].city == city) {
-				counter++;
+	getCityDataCount() {
+		var data = [];
+		var labels = this.getCityLabels();
+
+		for(var i=0; i<labels.length; i++) {
+			var counter = 0;
+			for(var j=0; j<Advertisements.length; j++) {
+				if(Advertisements[j].city == labels[i]) {
+					counter++;
+				}
 			}
+			data.push(counter);
 		}
-		return counter;
+		return data;
 	}
 
-	getGenreCount(genre) {
-		var counter = 0;
-		for(let i=0; i<Advertisements.length; i++) {
-			if(Advertisements[i].genre == genre) {
-				counter++;
+	getGenreDataCount() {
+		var data = [];
+		var labels = this.getGenreLabels();
+
+		for(var i=0; i<labels.length; i++) {
+			var counter = 0;
+			for(var j=0; j<Advertisements.length; j++) {
+				if(Advertisements[j].genre == labels[i]) {
+					counter++;
+				}
 			}
+			data.push(counter);
 		}
-		return counter;
+		return data;
 	}
 
 }
