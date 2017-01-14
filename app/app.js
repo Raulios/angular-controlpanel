@@ -19,6 +19,7 @@ import './services';
 import './layout';
 import './home';
 import './graphs';
+import './add-advertisement/';
 
 
 // Create and bootstrap application
@@ -33,7 +34,8 @@ const requires = [
   'app.services',
   'app.layout',
   'app.home',
-  'app.graphs'
+  'app.graphs',
+  'app.add-advertisement'
 ];
 
 // Mount on window for testing
