@@ -3,6 +3,7 @@ import 'angular-ui-router';
 import 'angular-animate';  
 import 'angular-touch'  
 import 'angular-ui-bootstrap'; 
+import 'angular-chart.js';
 
 // Import our app config files
 import constants  from './config/app.constants';
@@ -25,6 +26,7 @@ const requires = [
   'ngAnimate',  
   'ngTouch',   
   'ui.bootstrap', 
+  'chart.js',
   'templates',
   'app.components',
   'app.services',
