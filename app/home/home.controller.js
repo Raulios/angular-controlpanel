@@ -1,7 +1,8 @@
 class HomeCtrl {
-  constructor() {
+  constructor(Advertisement) {
     'ngInject';
 
+    this.advertisements = Advertisement.getAll();
   }
 
 

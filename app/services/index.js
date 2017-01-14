@@ -2,12 +2,12 @@
 import angular from 'angular';
 
 // EXAMPLE
-// import ExampleService from './example.service';
+import AdvertisementService from './advertisement.service';
 
 // Add the services to the module
 let servicesModule = angular.module('app.services', []);
 
 // EXAMPLE
-// servicesModule.service('Example', ExampleService);
+servicesModule.service('Advertisement', AdvertisementService);
 
 export default servicesModule;
