@@ -18,6 +18,7 @@ import './components';
 import './services';
 import './layout';
 import './home';
+import './graphs';
 
 
 // Create and bootstrap application
@@ -31,7 +32,8 @@ const requires = [
   'app.components',
   'app.services',
   'app.layout',
-  'app.home'
+  'app.home',
+  'app.graphs'
 ];
 
 // Mount on window for testing
