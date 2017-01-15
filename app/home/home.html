@@ -1,9 +1,15 @@
 
 <section>
 	<div class="container-fluid">
+		<h1 class="page-header"><i class="fa fa-list" aria-hidden="true"></i> Advertisement List</h1>
 		<div class="row">
 			<div class="col-xs-12">
 				<input type="text" ng-model="$ctrl.query" class="form-control search-input" placeholder="Search...">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<button class="btn btn-default add-ad-btn pull-right" ng-click="$ctrl.openAddAdModal()"><i class="fa fa-plus" aria-hidden="true"></i> Create new Ad</button>
 			</div>
 		</div>
 		<div class="row">
@@ -31,7 +37,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="ad in $ctrl.advertisements | filter:$ctrl.query">
+								<tr ng-repeat="ad in $ctrl.advertisements | filter:$ctrl.query | orderBy: '-id'">
 									<td>
 										{{ ad.instrument }}
 									</td>

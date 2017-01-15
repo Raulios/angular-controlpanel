@@ -91,4 +91,32 @@ export default class Advertisement {
 		return data;
 	}
 
+	createNewAdvertisement(advertisement) {
+		var errors = [];
+
+		if(!advertisement.instrument) {
+			errors.push('Instrument field required');
+		}
+
+		if(!advertisement.genre) {
+			errors.push('Genre field required');
+		}
+
+		if(!advertisement.city) {
+			errors.push('City field required');
+		}
+
+		if(!advertisement.country) {
+			errors.push('Country field required');
+		}
+
+		if(errors.length == 0) {
+			var last_id = Advertisements[Advertisements.length - 1].id;
+			advertisement.id = last_id + 1;
+			Advertisements.push(advertisement);
+		}
+
+		return errors;
+	}
+
 }

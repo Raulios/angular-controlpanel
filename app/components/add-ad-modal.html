@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">New Advertisement</h3>
+</div>
+<div class="modal-body" id="modal-body">
+	<div class="alert alert-danger" role="alert" ng-show="$ctrl.errors">
+		<ul>
+			<li ng-repeat="error in $ctrl.errors">
+				{{ error }}
+			</li>
+		</ul>
+	</div>
+    <form ng-submit="$ctrl.submitForm()">
+	  <div class="form-group">
+	    <label for="inputInstrument">Instrument</label>
+	    <input type="text" class="form-control" id="inputInstrument" placeholder="Instrument" ng-model="$ctrl.advertisement.instrument">
+	  </div>
+	  <div class="form-group">
+	    <label for="inputGenre">Genre</label>
+	    <input type="text" class="form-control" id="inputGenre" placeholder="Genre" ng-model="$ctrl.advertisement.genre">
+	  </div>
+	  <div class="form-group">
+	    <label for="inputCity">City</label>
+	    <input type="text" class="form-control" id="inputCity" placeholder="City" ng-model="$ctrl.advertisement.city">
+	  </div>
+	  <div class="form-group">
+	    <label for="inputCountry">Country</label>
+	    <input type="text" class="form-control" id="inputCountry" placeholder="Country" ng-model="$ctrl.advertisement.country">
+	  </div>
+	  <button class="btn btn-lg btn-block btn-default submit-add-ad-btn" type="submit">
+	  	<i class="fa fa-paper-plane"></i> Submit
+	  </button>
+  	</form>
+</div>

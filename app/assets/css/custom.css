@@ -66,8 +66,36 @@ section {
   font-size: 20px;
   border-radius: 25px; }
 
-.panel {
-  margin-top: 20px; }
+.btn-default {
+  background-color: white;
+  color: #46BFBD;
+  border-color: #46BFBD; }
+
+.btn-default:hover {
+  background-color: #46BFBD;
+  color: white;
+  border-color: #46BFBD;
+  transition: all 0.4s ease 0s; }
+
+.btn-default:active:hover {
+  background-color: #46BFBD;
+  color: white;
+  border-color: #46BFBD;
+  transition: all 0.4s ease 0s; }
+
+.btn-default:focus {
+  background-color: #46BFBD;
+  color: white;
+  border-color: #46BFBD;
+  transition: all 0.4s ease 0s; }
+
+.add-ad-btn {
+  margin-top: 10px;
+  margin-bottom: 5px; }
+
+.submit-add-ad-btn {
+  background-color: #46BFBD;
+  color: white; }
 
 .panel-default .panel-heading {
   background-color: #46BFBD;
@@ -82,10 +110,6 @@ section {
   border-left: 10px solid #46BFBD;
   color: black;
   transition: all 0.4s ease 0s; }
-
-.btn-default {
-  background-color: #46BFBD;
-  color: white; }
 
 @media (max-width: 767px) {
   #wrapper {
