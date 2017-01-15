@@ -66,7 +66,7 @@ _angular2.default.bootstrap(document, ['app'], {
   strictDi: true
 });
 
-},{"./components":3,"./config/app.config":4,"./config/app.constants":5,"./config/app.run":6,"./config/app.templates":7,"./graphs":10,"./home":13,"./layout":16,"./services":20,"angular":30,"angular-animate":22,"angular-chart.js":23,"angular-touch":25,"angular-ui-bootstrap":27,"angular-ui-router":28}],2:[function(require,module,exports){
+},{"./components":4,"./config/app.config":5,"./config/app.constants":6,"./config/app.run":7,"./config/app.templates":8,"./graphs":11,"./home":14,"./layout":17,"./services":21,"angular":31,"angular-animate":23,"angular-chart.js":24,"angular-touch":26,"angular-ui-bootstrap":28,"angular-ui-router":29}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -120,6 +120,61 @@ exports.default = AddAdModal;
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var EditAdModalCtrl = function () {
+	EditAdModalCtrl.$inject = ["Advertisement"];
+	function EditAdModalCtrl(Advertisement) {
+		'ngInject';
+
+		_classCallCheck(this, EditAdModalCtrl);
+
+		this._Advertisement = Advertisement;
+	}
+
+	_createClass(EditAdModalCtrl, [{
+		key: '$onInit',
+		value: function $onInit() {
+			this.advertisement = this.resolve.ad;
+			console.log(this.resolve.ad);
+		}
+	}, {
+		key: 'submitForm',
+		value: function submitForm() {
+			this.errors = this._Advertisement.editAdvertisement(this.advertisement);
+
+			console.log(this.errors);
+
+			if (this.errors.length == 0) {
+				this.dismiss();
+			}
+		}
+	}]);
+
+	return EditAdModalCtrl;
+}();
+
+var EditAdModal = {
+	bindings: {
+		resolve: '<',
+		close: '&',
+		dismiss: '&'
+	},
+	controller: EditAdModalCtrl,
+	templateUrl: 'components/edit-ad-modal.html'
+};
+
+exports.default = EditAdModal;
+
+},{}],4:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
@@ -131,24 +186,29 @@ var _addAdModal = require('./add-ad-modal.component');
 
 var _addAdModal2 = _interopRequireDefault(_addAdModal);
 
+var _editAdModal = require('./edit-ad-modal.component');
+
+var _editAdModal2 = _interopRequireDefault(_editAdModal);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // import ExampleDirective from './example.directive';
 
 // Add the components/directives to the module
-// Import your dependencies here
+
+
+// EXAMPLES
 var componentsModule = _angular2.default.module('app.components', []);
 
 // EXAMPLES
-
-
-// EXAMPLES
+// Import your dependencies here
 componentsModule.component('addAdModal', _addAdModal2.default);
+componentsModule.component('editAdModal', _editAdModal2.default);
 // componentsModule.directive('exampleDirective', ExampleDirective);
 
 exports.default = componentsModule;
 
-},{"./add-ad-modal.component":2,"angular":30}],4:[function(require,module,exports){
+},{"./add-ad-modal.component":2,"./edit-ad-modal.component":3,"angular":31}],5:[function(require,module,exports){
 'use strict';
 
 AppConfig.$inject = ["$stateProvider", "$urlRouterProvider", "$qProvider", "ChartJsProvider"];
@@ -172,7 +232,7 @@ function AppConfig($stateProvider, $urlRouterProvider, $qProvider, ChartJsProvid
 
 exports.default = AppConfig;
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -184,7 +244,7 @@ var AppConstants = {
 
 exports.default = AppConstants;
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 'use strict';
 
 AppRun.$inject = ["AppConstants", "$rootScope"];
@@ -210,20 +270,21 @@ function AppRun(AppConstants, $rootScope) {
 
 exports.default = AppRun;
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 "use strict";
 
 angular.module("templates", []).run(["$templateCache", function ($templateCache) {
   $templateCache.put("components/add-ad-modal.html", "<div class=\"modal-header\">\n    <h3 class=\"modal-title\" id=\"modal-title\">New Advertisement</h3>\n</div>\n<div class=\"modal-body\" id=\"modal-body\">\n	<div class=\"alert alert-danger\" role=\"alert\" ng-show=\"$ctrl.errors\">\n		<ul>\n			<li ng-repeat=\"error in $ctrl.errors\">\n				{{ error }}\n			</li>\n		</ul>\n	</div>\n    <form ng-submit=\"$ctrl.submitForm()\">\n	  <div class=\"form-group\">\n	    <label for=\"inputInstrument\">Instrument</label>\n	    <input type=\"text\" class=\"form-control\" id=\"inputInstrument\" placeholder=\"Instrument\" ng-model=\"$ctrl.advertisement.instrument\">\n	  </div>\n	  <div class=\"form-group\">\n	    <label for=\"inputGenre\">Genre</label>\n	    <input type=\"text\" class=\"form-control\" id=\"inputGenre\" placeholder=\"Genre\" ng-model=\"$ctrl.advertisement.genre\">\n	  </div>\n	  <div class=\"form-group\">\n	    <label for=\"inputCity\">City</label>\n	    <input type=\"text\" class=\"form-control\" id=\"inputCity\" placeholder=\"City\" ng-model=\"$ctrl.advertisement.city\">\n	  </div>\n	  <div class=\"form-group\">\n	    <label for=\"inputCountry\">Country</label>\n	    <input type=\"text\" class=\"form-control\" id=\"inputCountry\" placeholder=\"Country\" ng-model=\"$ctrl.advertisement.country\">\n	  </div>\n	  <button class=\"btn btn-lg btn-block btn-default submit-add-ad-btn\" type=\"submit\">\n	  	<i class=\"fa fa-paper-plane\"></i> Submit\n	  </button>\n  	</form>\n</div>");
+  $templateCache.put("components/edit-ad-modal.html", "<div class=\"modal-header\">\n    <h3 class=\"modal-title\" id=\"modal-title\">Edit Advertisement</h3>\n</div>\n<div class=\"modal-body\" id=\"modal-body\">\n	<div class=\"alert alert-danger\" role=\"alert\" ng-show=\"$ctrl.errors\">\n		<ul>\n			<li ng-repeat=\"error in $ctrl.errors\">\n				{{ error }}\n			</li>\n		</ul>\n	</div>\n    <form ng-submit=\"$ctrl.submitForm()\">\n      <input type=\"hidden\" ng-model=\"$ctrl.advertisement.id\">\n	  <div class=\"form-group\">\n	    <label for=\"inputInstrument\">Instrument</label>\n	    <input type=\"text\" class=\"form-control\" id=\"inputInstrument\" placeholder=\"Instrument\" ng-model=\"$ctrl.advertisement.instrument\">\n	  </div>\n	  <div class=\"form-group\">\n	    <label for=\"inputGenre\">Genre</label>\n	    <input type=\"text\" class=\"form-control\" id=\"inputGenre\" placeholder=\"Genre\" ng-model=\"$ctrl.advertisement.genre\">\n	  </div>\n	  <div class=\"form-group\">\n	    <label for=\"inputCity\">City</label>\n	    <input type=\"text\" class=\"form-control\" id=\"inputCity\" placeholder=\"City\" ng-model=\"$ctrl.advertisement.city\">\n	  </div>\n	  <div class=\"form-group\">\n	    <label for=\"inputCountry\">Country</label>\n	    <input type=\"text\" class=\"form-control\" id=\"inputCountry\" placeholder=\"Country\" ng-model=\"$ctrl.advertisement.country\">\n	  </div>\n	  <button class=\"btn btn-lg btn-block btn-default submit-add-ad-btn\" type=\"submit\">\n	  	<i class=\"fa fa-paper-plane\"></i> Submit\n	  </button>\n  	</form>\n</div>");
+  $templateCache.put("home/home.html", "\n<section>\n	<div class=\"container-fluid\">\n		<h1 class=\"page-header\"><i class=\"fa fa-list\" aria-hidden=\"true\"></i> Advertisement List</h1>\n		<div class=\"row\">\n			<div class=\"col-xs-12\">\n				<input type=\"text\" ng-model=\"$ctrl.query\" class=\"form-control search-input\" placeholder=\"Search...\">\n			</div>\n		</div>\n		<div class=\"row\">\n			<div class=\"col-xs-12\">\n				<button class=\"btn btn-default add-ad-btn pull-right\" ng-click=\"$ctrl.openAddAdModal()\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Create new Ad</button>\n			</div>\n		</div>\n		<div class=\"row\">\n			<div class=\"col-xs-12\">\n				<div class=\"panel panel-default\">\n			  		<div class=\"panel-heading\">\n				    	<h3 class=\"panel-title\">Advertisements</h3>\n				  	</div>\n				  	<div class=\"panel-body\">\n						<table class=\"table\">\n							<thead>\n								<tr>\n									<th>\n										Instrument\n									</th>\n									<th>\n										Genre\n									</th>\n									<th>\n										City\n									</th>\n									<th>\n										Country\n									</th>\n									<th>\n									</th>\n								</tr>\n							</thead>\n							<tbody>\n								<tr ng-repeat=\"ad in $ctrl.advertisements | filter:$ctrl.query | orderBy: \'-id\'\">\n									<td>\n										{{ ad.instrument }}\n									</td>\n									<td>\n										{{ ad.genre }}\n									</td>\n									<td>\n										{{ ad.city }}\n									</td>\n									<td>\n										{{ ad.country }}\n									</td>\n									<td>\n										<button class=\"btn btn-default add-ad-btn\" ng-click=\"$ctrl.openEditAdModal(ad)\"> Edit</button>\n										<button class=\"btn btn-default add-ad-btn\" ng-click=\"$ctrl.deleteAdvertisement(ad)\"> Delete</button>\n									</td>\n								</tr>\n							</tbody>\n						</table>\n					</div>\n				</div>\n			</div>\n		</div>\n	</div>\n</section>\n");
   $templateCache.put("graphs/graphs.html", "<section>\n	<div class=\"container-fluid\">\n		<h1 class=\"page-header\"><i class=\"fa fa-bar-chart\" aria-hidden=\"true\"></i> Charts & Graphs</h1>\n		<div class=\"row\">\n			<div class=\"col-md-4\">\n				<div class=\"panel panel-default\">\n			  		<div class=\"panel-heading\">\n				    	<h3 class=\"panel-title\">Count by Instrument</h3>\n				  	</div>\n				  	<div class=\"panel-body\">\n						<canvas id=\"doughnut\" class=\"chart chart-doughnut\"\n						  chart-data=\"$ctrl.instrument_data\" chart-labels=\"$ctrl.instrument_labels\">\n						</canvas> \n					</div>\n				</div>\n			</div>\n			<div class=\"col-md-4\">\n				<div class=\"panel panel-default\">\n			  		<div class=\"panel-heading\">\n				    	<h3 class=\"panel-title\">Count by Genre</h3>\n				  	</div>\n				  	<div class=\"panel-body\">\n						<canvas id=\"doughnut2\" class=\"chart chart-doughnut\"\n						  chart-data=\"$ctrl.genre_data\" chart-labels=\"$ctrl.genre_labels\">\n						</canvas> \n					</div>\n				</div>\n			</div>\n			<div class=\"col-md-4\">\n				<div class=\"panel panel-default\">\n			  		<div class=\"panel-heading\">\n				    	<h3 class=\"panel-title\">Count by City</h3>\n				  	</div>\n				  	<div class=\"panel-body\">\n						<canvas id=\"doughnut3\" class=\"chart chart-doughnut\"\n						  chart-data=\"$ctrl.city_data\" chart-labels=\"$ctrl.city_labels\">\n						</canvas> \n					</div>\n				</div>\n			</div>\n		</div>\n		<div class=\"row\">\n			<div class=\"col-md-6\">\n				<div class=\"panel panel-default\">\n			  		<div class=\"panel-heading\">\n				    	<h3 class=\"panel-title\">Comparison by Instrument Graph</h3>\n				  	</div>\n				  	<div class=\"panel-body\">\n						<canvas id=\"bar\" class=\"chart chart-bar\"\n						  chart-data=\"$ctrl.instrument_data\" chart-labels=\"$ctrl.instrument_labels\" >\n						</canvas>\n					</div>\n				</div>\n			</div>\n			<div class=\"col-md-6\">\n				<div class=\"panel panel-default\">\n			  		<div class=\"panel-heading\">\n				    	<h3 class=\"panel-title\">Comparison by Genre Graph</h3>\n				  	</div>\n				  	<div class=\"panel-body\">\n						<canvas id=\"bar\" class=\"chart chart-bar\"\n						  chart-data=\"$ctrl.genre_data\" chart-labels=\"$ctrl.genre_labels\">\n						</canvas>\n					</div>\n				</div>\n			</div>\n		</div>\n		<div class=\"row\">\n			<div class=\"col-xs-12\">\n				<div class=\"panel panel-default\">\n			  		<div class=\"panel-heading\">\n				    	<h3 class=\"panel-title\">Comparison by City Area Chart</h3>\n				  	</div>\n				  	<div class=\"panel-body\">\n				  		<canvas id=\"polar-area\" class=\"chart chart-polar-area\"\n						  chart-data=\"$ctrl.city_data\" chart-labels=\"$ctrl.city_labels\" chart-options=\"options\">\n						</canvas> \n				  	</div>\n			  	</div>\n		  	</div>\n	  	</div>\n	</div>\n</section>");
-  $templateCache.put("home/home.html", "\n<section>\n	<div class=\"container-fluid\">\n		<h1 class=\"page-header\"><i class=\"fa fa-list\" aria-hidden=\"true\"></i> Advertisement List</h1>\n		<div class=\"row\">\n			<div class=\"col-xs-12\">\n				<input type=\"text\" ng-model=\"$ctrl.query\" class=\"form-control search-input\" placeholder=\"Search...\">\n			</div>\n		</div>\n		<div class=\"row\">\n			<div class=\"col-xs-12\">\n				<button class=\"btn btn-default add-ad-btn pull-right\" ng-click=\"$ctrl.openAddAdModal()\"><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Create new Ad</button>\n			</div>\n		</div>\n		<div class=\"row\">\n			<div class=\"col-xs-12\">\n				<div class=\"panel panel-default\">\n			  		<div class=\"panel-heading\">\n				    	<h3 class=\"panel-title\">Advertisements</h3>\n				  	</div>\n				  	<div class=\"panel-body\">\n						<table class=\"table\">\n							<thead>\n								<tr>\n									<th>\n										Instrument\n									</th>\n									<th>\n										Genre\n									</th>\n									<th>\n										City\n									</th>\n									<th>\n										Country\n									</th>\n								</tr>\n							</thead>\n							<tbody>\n								<tr ng-repeat=\"ad in $ctrl.advertisements | filter:$ctrl.query | orderBy: \'-id\'\">\n									<td>\n										{{ ad.instrument }}\n									</td>\n									<td>\n										{{ ad.genre }}\n									</td>\n									<td>\n										{{ ad.city }}\n									</td>\n									<td>\n										{{ ad.country }}\n									</td>\n								</tr>\n							</tbody>\n						</table>\n					</div>\n				</div>\n			</div>\n		</div>\n	</div>\n</section>\n");
   $templateCache.put("layout/app-view.html", "<app-header></app-header>\n\n<div id=\"wrapper\">\n	<app-sidenav></app-sidenav>\n	<div id=\"page-content-wrapper\">\n	    <div class=\"page-content\">\n			<div ui-view></div>\n		</div>\n	</div>\n</div>\n\n<app-footer></app-footer>");
   $templateCache.put("layout/footer.html", "");
   $templateCache.put("layout/header.html", "\n<nav class=\"navbar navbar-default navbar-fixed-top\" role=\"navigation\">\n	<div class=\"navbar-header\">\n		<a class=\"navbar-brand\" href=\"#\">{{$ctrl.appName}}</a>\n	</div>\n</nav>\n");
   $templateCache.put("layout/sidenav.html", "<div id=\"sidebar-wrapper\">\n    <ul class=\"sidebar-nav\">\n        <li><a ui-sref=\"app.home\" ui-sref-active=\"active\"><i class=\"fa fa-list\" aria-hidden=\"true\"></i> Advertisement list</a></li>\n        <li><a ui-sref=\"app.graphs\" ui-sref-active=\"active\"><i class=\"fa fa-bar-chart\" aria-hidden=\"true\"></i> Charts & Graphs</a></li>\n        <li><a href=\"#\"><i class=\"fa fa-home\" aria-hidden=\"true\"></i> Last link</a></li>\n    </ul>\n</div>");
 }]);
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 'use strict';
 
 GraphsConfig.$inject = ["$stateProvider"];
@@ -244,7 +305,7 @@ function GraphsConfig($stateProvider) {
 
 exports.default = GraphsConfig;
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -273,7 +334,7 @@ GraphsCtrl.$inject = ["Advertisement"];
 
 exports.default = GraphsCtrl;
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -300,7 +361,7 @@ graphsModule.controller('GraphsCtrl', _graphs4.default);
 
 exports.default = graphsModule;
 
-},{"./graphs.config":8,"./graphs.controller":9,"angular":30}],11:[function(require,module,exports){
+},{"./graphs.config":9,"./graphs.controller":10,"angular":31}],12:[function(require,module,exports){
 'use strict';
 
 HomeConfig.$inject = ["$stateProvider"];
@@ -321,7 +382,7 @@ function HomeConfig($stateProvider) {
 
 exports.default = HomeConfig;
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -342,6 +403,7 @@ var HomeCtrl = function () {
     this._$uibModal = $uibModal;
 
     this.advertisements = Advertisement.getAll();
+    this._Advertisement = Advertisement;
   }
 
   _createClass(HomeCtrl, [{
@@ -352,6 +414,25 @@ var HomeCtrl = function () {
         component: 'addAdModal'
       });
     }
+  }, {
+    key: 'openEditAdModal',
+    value: function openEditAdModal(_ad) {
+      console.log(_ad);
+      this._$uibModal.open({
+        animation: true,
+        component: 'editAdModal',
+        resolve: {
+          ad: function ad() {
+            return _ad;
+          }
+        }
+      });
+    }
+  }, {
+    key: 'deleteAdvertisement',
+    value: function deleteAdvertisement(ad) {
+      this._Advertisement.deleteAdvertisement(ad);
+    }
   }]);
 
   return HomeCtrl;
@@ -359,7 +440,7 @@ var HomeCtrl = function () {
 
 exports.default = HomeCtrl;
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -386,7 +467,7 @@ homeModule.controller('HomeCtrl', _home4.default);
 
 exports.default = homeModule;
 
-},{"./home.config":11,"./home.controller":12,"angular":30}],14:[function(require,module,exports){
+},{"./home.config":12,"./home.controller":13,"angular":31}],15:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -408,7 +489,7 @@ var AppFooter = {
 
 exports.default = AppFooter;
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -434,7 +515,7 @@ var AppHeader = {
 
 exports.default = AppHeader;
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -467,7 +548,7 @@ layoutModule.component('appFooter', _footer2.default);
 
 exports.default = layoutModule;
 
-},{"./footer.component":14,"./header.component":15,"./sidenav.component":17,"angular":30}],17:[function(require,module,exports){
+},{"./footer.component":15,"./header.component":16,"./sidenav.component":18,"angular":31}],18:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -489,7 +570,7 @@ var AppSidenav = {
 
 exports.default = AppSidenav;
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -559,7 +640,7 @@ var Advertisements = [{
 
 exports.default = Advertisements;
 
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -704,6 +785,46 @@ var Advertisement = function () {
 
 			return errors;
 		}
+	}, {
+		key: 'editAdvertisement',
+		value: function editAdvertisement(advertisement) {
+			var errors = [];
+
+			if (!advertisement.instrument) {
+				errors.push('Instrument field required');
+			}
+
+			if (!advertisement.genre) {
+				errors.push('Genre field required');
+			}
+
+			if (!advertisement.city) {
+				errors.push('City field required');
+			}
+
+			if (!advertisement.country) {
+				errors.push('Country field required');
+			}
+
+			if (errors.length == 0) {
+				for (var i = 0; i < _mockAdvertisements2.default.length; i++) {
+					if (advertisement.id == _mockAdvertisements2.default[i].id) {
+						_mockAdvertisements2.default[i] = advertisement;
+					}
+				}
+			}
+
+			return errors;
+		}
+	}, {
+		key: 'deleteAdvertisement',
+		value: function deleteAdvertisement(advertisement) {
+			for (var i = 0; i < _mockAdvertisements2.default.length; i++) {
+				if (advertisement.id == _mockAdvertisements2.default[i].id) {
+					_mockAdvertisements2.default.splice(i, 1);
+				}
+			}
+		}
 	}]);
 
 	return Advertisement;
@@ -711,7 +832,7 @@ var Advertisement = function () {
 
 exports.default = Advertisement;
 
-},{"../mockupdata/mock-advertisements.js":18}],20:[function(require,module,exports){
+},{"../mockupdata/mock-advertisements.js":19}],21:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -740,7 +861,7 @@ servicesModule.service('Advertisement', _advertisement2.default);
 
 exports.default = servicesModule;
 
-},{"./advertisement.service":19,"angular":30}],21:[function(require,module,exports){
+},{"./advertisement.service":20,"angular":31}],22:[function(require,module,exports){
 /**
  * @license AngularJS v1.6.1
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -4896,11 +5017,11 @@ angular.module('ngAnimate', [], function initAngularHelpers() {
 
 })(window, window.angular);
 
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 require('./angular-animate');
 module.exports = 'ngAnimate';
 
-},{"./angular-animate":21}],23:[function(require,module,exports){
+},{"./angular-animate":22}],24:[function(require,module,exports){
 /*!
  * angular-chart.js - An angular.js wrapper for Chart.js
  * http://jtblin.github.io/angular-chart.js/
@@ -5302,7 +5423,7 @@ module.exports = 'ngAnimate';
   }
 }));
 
-},{"angular":30,"chart.js":31}],24:[function(require,module,exports){
+},{"angular":31,"chart.js":32}],25:[function(require,module,exports){
 /**
  * @license AngularJS v1.6.1
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -6051,11 +6172,11 @@ makeSwipeDirective('ngSwipeRight', 1, 'swiperight');
 
 })(window, window.angular);
 
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 require('./angular-touch');
 module.exports = 'ngTouch';
 
-},{"./angular-touch":24}],26:[function(require,module,exports){
+},{"./angular-touch":25}],27:[function(require,module,exports){
 /*
  * angular-ui-bootstrap
  * http://angular-ui.github.io/bootstrap/
@@ -13771,12 +13892,12 @@ angular.module('ui.bootstrap.datepickerPopup').run(function() {!angular.$$csp().
 angular.module('ui.bootstrap.tooltip').run(function() {!angular.$$csp().noInlineStyle && !angular.$$uibTooltipCss && angular.element(document).find('head').prepend('<style type="text/css">[uib-tooltip-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-popup].tooltip.right-bottom > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-bottom > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-bottom > .tooltip-arrow,[uib-popover-popup].popover.top-left > .arrow,[uib-popover-popup].popover.top-right > .arrow,[uib-popover-popup].popover.bottom-left > .arrow,[uib-popover-popup].popover.bottom-right > .arrow,[uib-popover-popup].popover.left-top > .arrow,[uib-popover-popup].popover.left-bottom > .arrow,[uib-popover-popup].popover.right-top > .arrow,[uib-popover-popup].popover.right-bottom > .arrow,[uib-popover-html-popup].popover.top-left > .arrow,[uib-popover-html-popup].popover.top-right > .arrow,[uib-popover-html-popup].popover.bottom-left > .arrow,[uib-popover-html-popup].popover.bottom-right > .arrow,[uib-popover-html-popup].popover.left-top > .arrow,[uib-popover-html-popup].popover.left-bottom > .arrow,[uib-popover-html-popup].popover.right-top > .arrow,[uib-popover-html-popup].popover.right-bottom > .arrow,[uib-popover-template-popup].popover.top-left > .arrow,[uib-popover-template-popup].popover.top-right > .arrow,[uib-popover-template-popup].popover.bottom-left > .arrow,[uib-popover-template-popup].popover.bottom-right > .arrow,[uib-popover-template-popup].popover.left-top > .arrow,[uib-popover-template-popup].popover.left-bottom > .arrow,[uib-popover-template-popup].popover.right-top > .arrow,[uib-popover-template-popup].popover.right-bottom > .arrow{top:auto;bottom:auto;left:auto;right:auto;margin:0;}[uib-popover-popup].popover,[uib-popover-html-popup].popover,[uib-popover-template-popup].popover{display:block !important;}</style>'); angular.$$uibTooltipCss = true; });
 angular.module('ui.bootstrap.timepicker').run(function() {!angular.$$csp().noInlineStyle && !angular.$$uibTimepickerCss && angular.element(document).find('head').prepend('<style type="text/css">.uib-time input{width:50px;}</style>'); angular.$$uibTimepickerCss = true; });
 angular.module('ui.bootstrap.typeahead').run(function() {!angular.$$csp().noInlineStyle && !angular.$$uibTypeaheadCss && angular.element(document).find('head').prepend('<style type="text/css">[uib-typeahead-popup].dropdown-menu{display:block;}</style>'); angular.$$uibTypeaheadCss = true; });
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 require('./dist/ui-bootstrap-tpls');
 
 module.exports = 'ui.bootstrap';
 
-},{"./dist/ui-bootstrap-tpls":26}],28:[function(require,module,exports){
+},{"./dist/ui-bootstrap-tpls":27}],29:[function(require,module,exports){
 /**
  * State-based routing for AngularJS
  * @version v0.2.18
@@ -18316,7 +18437,7 @@ angular.module('ui.router.state')
   .filter('isState', $IsStateFilter)
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 /**
  * @license AngularJS v1.6.1
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -51299,11 +51420,11 @@ $provide.value("$locale", {
 })(window);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":29}],31:[function(require,module,exports){
+},{"./angular":30}],32:[function(require,module,exports){
 /**
  * @namespace Chart
  */
@@ -51354,7 +51475,7 @@ require('./charts/Chart.Scatter')(Chart);
 
 window.Chart = module.exports = Chart;
 
-},{"./charts/Chart.Bar":32,"./charts/Chart.Bubble":33,"./charts/Chart.Doughnut":34,"./charts/Chart.Line":35,"./charts/Chart.PolarArea":36,"./charts/Chart.Radar":37,"./charts/Chart.Scatter":38,"./controllers/controller.bar":39,"./controllers/controller.bubble":40,"./controllers/controller.doughnut":41,"./controllers/controller.line":42,"./controllers/controller.polarArea":43,"./controllers/controller.radar":44,"./core/core.animation":45,"./core/core.canvasHelpers":46,"./core/core.controller":47,"./core/core.datasetController":48,"./core/core.element":49,"./core/core.helpers":50,"./core/core.js":51,"./core/core.layoutService":52,"./core/core.legend":53,"./core/core.plugin.js":54,"./core/core.scale":55,"./core/core.scaleService":56,"./core/core.title":57,"./core/core.tooltip":58,"./elements/element.arc":59,"./elements/element.line":60,"./elements/element.point":61,"./elements/element.rectangle":62,"./scales/scale.category":63,"./scales/scale.linear":64,"./scales/scale.linearbase.js":65,"./scales/scale.logarithmic":66,"./scales/scale.radialLinear":67,"./scales/scale.time":68}],32:[function(require,module,exports){
+},{"./charts/Chart.Bar":33,"./charts/Chart.Bubble":34,"./charts/Chart.Doughnut":35,"./charts/Chart.Line":36,"./charts/Chart.PolarArea":37,"./charts/Chart.Radar":38,"./charts/Chart.Scatter":39,"./controllers/controller.bar":40,"./controllers/controller.bubble":41,"./controllers/controller.doughnut":42,"./controllers/controller.line":43,"./controllers/controller.polarArea":44,"./controllers/controller.radar":45,"./core/core.animation":46,"./core/core.canvasHelpers":47,"./core/core.controller":48,"./core/core.datasetController":49,"./core/core.element":50,"./core/core.helpers":51,"./core/core.js":52,"./core/core.layoutService":53,"./core/core.legend":54,"./core/core.plugin.js":55,"./core/core.scale":56,"./core/core.scaleService":57,"./core/core.title":58,"./core/core.tooltip":59,"./elements/element.arc":60,"./elements/element.line":61,"./elements/element.point":62,"./elements/element.rectangle":63,"./scales/scale.category":64,"./scales/scale.linear":65,"./scales/scale.linearbase.js":66,"./scales/scale.logarithmic":67,"./scales/scale.radialLinear":68,"./scales/scale.time":69}],33:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -51367,7 +51488,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],33:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -51379,7 +51500,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],34:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -51392,7 +51513,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],35:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -51405,7 +51526,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],36:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -51418,7 +51539,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],37:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -51432,7 +51553,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],38:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -51481,7 +51602,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],39:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -52056,7 +52177,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],40:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -52180,7 +52301,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],41:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -52473,7 +52594,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],42:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -52825,7 +52946,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],43:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -53042,7 +53163,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],44:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -53232,7 +53353,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],45:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 /* global window: false */
 'use strict';
 
@@ -53365,7 +53486,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],46:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -53471,7 +53592,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],47:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -54163,7 +54284,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],48:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -54329,7 +54450,7 @@ module.exports = function(Chart) {
 	Chart.DatasetController.extend = helpers.inherits;
 };
 
-},{}],49:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -54427,7 +54548,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],50:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 /* global window: false */
 /* global document: false */
 'use strict';
@@ -55473,7 +55594,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{"chartjs-color":70}],51:[function(require,module,exports){
+},{"chartjs-color":71}],52:[function(require,module,exports){
 'use strict';
 
 module.exports = function() {
@@ -55585,7 +55706,7 @@ module.exports = function() {
 
 };
 
-},{}],52:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -55908,7 +56029,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],53:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -56394,7 +56515,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],54:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -56525,7 +56646,7 @@ module.exports = function(Chart) {
 	Chart.pluginService = Chart.plugins;
 };
 
-},{}],55:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -57285,7 +57406,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],56:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -57327,7 +57448,7 @@ module.exports = function(Chart) {
 	};
 };
 
-},{}],57:[function(require,module,exports){
+},{}],58:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -57533,7 +57654,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],58:[function(require,module,exports){
+},{}],59:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -58249,7 +58370,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],59:[function(require,module,exports){
+},{}],60:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -58342,7 +58463,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],60:[function(require,module,exports){
+},{}],61:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -58519,7 +58640,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],61:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -58578,7 +58699,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],62:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -58675,7 +58796,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],63:[function(require,module,exports){
+},{}],64:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -58806,7 +58927,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],64:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -59000,7 +59121,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],65:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -59127,7 +59248,7 @@ module.exports = function(Chart) {
 	});
 };
 
-},{}],66:[function(require,module,exports){
+},{}],67:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -59395,7 +59516,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],67:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 'use strict';
 
 module.exports = function(Chart) {
@@ -59811,7 +59932,7 @@ module.exports = function(Chart) {
 
 };
 
-},{}],68:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 /* global window: false */
 'use strict';
 
@@ -60273,7 +60394,7 @@ module.exports = function(Chart) {
 
 };
 
-},{"moment":74}],69:[function(require,module,exports){
+},{"moment":75}],70:[function(require,module,exports){
 /* MIT license */
 var colorNames = require('color-name');
 
@@ -60496,7 +60617,7 @@ for (var name in colorNames) {
    reverseNames[colorNames[name]] = name;
 }
 
-},{"color-name":73}],70:[function(require,module,exports){
+},{"color-name":74}],71:[function(require,module,exports){
 /* MIT license */
 var convert = require('color-convert');
 var string = require('chartjs-color-string');
@@ -60981,7 +61102,7 @@ if (typeof window !== 'undefined') {
 
 module.exports = Color;
 
-},{"chartjs-color-string":69,"color-convert":72}],71:[function(require,module,exports){
+},{"chartjs-color-string":70,"color-convert":73}],72:[function(require,module,exports){
 /* MIT license */
 
 module.exports = {
@@ -61681,7 +61802,7 @@ for (var key in cssKeywords) {
   reverseKeywords[JSON.stringify(cssKeywords[key])] = key;
 }
 
-},{}],72:[function(require,module,exports){
+},{}],73:[function(require,module,exports){
 var conversions = require("./conversions");
 
 var convert = function() {
@@ -61774,7 +61895,7 @@ Converter.prototype.getValues = function(space) {
 });
 
 module.exports = convert;
-},{"./conversions":71}],73:[function(require,module,exports){
+},{"./conversions":72}],74:[function(require,module,exports){
 module.exports = {
 	"aliceblue": [240, 248, 255],
 	"antiquewhite": [250, 235, 215],
@@ -61925,7 +62046,7 @@ module.exports = {
 	"yellow": [255, 255, 0],
 	"yellowgreen": [154, 205, 50]
 };
-},{}],74:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 //! moment.js
 //! version : 2.17.1
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors

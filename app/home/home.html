@@ -34,6 +34,8 @@
 									<th>
 										Country
 									</th>
+									<th>
+									</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -49,6 +51,10 @@
 									</td>
 									<td>
 										{{ ad.country }}
+									</td>
+									<td>
+										<button class="btn btn-default add-ad-btn" ng-click="$ctrl.openEditAdModal(ad)"> Edit</button>
+										<button class="btn btn-default add-ad-btn" ng-click="$ctrl.deleteAdvertisement(ad)"> Delete</button>
 									</td>
 								</tr>
 							</tbody>

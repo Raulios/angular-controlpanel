@@ -89,6 +89,10 @@ section {
   border-color: #46BFBD;
   transition: all 0.4s ease 0s; }
 
+.modal-header {
+  background-color: #46BFBD;
+  color: white; }
+
 .add-ad-btn {
   margin-top: 10px;
   margin-bottom: 5px; }

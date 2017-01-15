@@ -5,6 +5,7 @@ class HomeCtrl {
     this._$uibModal = $uibModal;
 
     this.advertisements = Advertisement.getAll();
+    this._Advertisement = Advertisement;
   }
 
   openAddAdModal() {
@@ -12,6 +13,23 @@ class HomeCtrl {
   		animation: true,
   		component: 'addAdModal',
   	});
+  }
+
+  openEditAdModal(ad) {
+    console.log(ad);
+    this._$uibModal.open({
+      animation: true,
+      component: 'editAdModal',
+      resolve: {
+        ad: function () {
+          return ad;
+        }
+      }
+    });
+  }
+
+  deleteAdvertisement(ad) {
+    this._Advertisement.deleteAdvertisement(ad);
   }
 }
 

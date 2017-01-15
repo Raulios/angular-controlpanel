@@ -119,4 +119,42 @@ export default class Advertisement {
 		return errors;
 	}
 
+	editAdvertisement(advertisement) {
+		var errors = [];
+
+		if(!advertisement.instrument) {
+			errors.push('Instrument field required');
+		}
+
+		if(!advertisement.genre) {
+			errors.push('Genre field required');
+		}
+
+		if(!advertisement.city) {
+			errors.push('City field required');
+		}
+
+		if(!advertisement.country) {
+			errors.push('Country field required');
+		}
+
+		if(errors.length == 0) {
+			for(let i=0; i<Advertisements.length; i++) {
+				if(advertisement.id == Advertisements[i].id) {
+					Advertisements[i] = advertisement;
+				}
+			}
+		}
+
+		return errors;
+	}
+
+	deleteAdvertisement(advertisement) {
+		for(let i=0; i<Advertisements.length; i++) {
+			if(advertisement.id == Advertisements[i].id) {
+				Advertisements.splice(i, 1);
+			}
+		}
+	}
+
 }
