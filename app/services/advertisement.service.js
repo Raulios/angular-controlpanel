@@ -119,8 +119,13 @@ export default class Advertisement {
 		
 
 		if(errors.length == 0) {
-			var last_id = Advertisements[Advertisements.length - 1].id;
-			advertisement.id = last_id + 1;
+			if(Advertisements.length > 0) {
+				var last_id = Advertisements[Advertisements.length - 1].id;
+				advertisement.id = last_id + 1;
+			} else {
+				advertisement.id = 1;
+			}
+			
 			Advertisements.push(advertisement);
 		}
 

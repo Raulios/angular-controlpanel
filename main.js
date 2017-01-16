@@ -778,8 +778,13 @@ var Advertisement = function () {
 			}
 
 			if (errors.length == 0) {
-				var last_id = _mockAdvertisements2.default[_mockAdvertisements2.default.length - 1].id;
-				advertisement.id = last_id + 1;
+				if (_mockAdvertisements2.default.length > 0) {
+					var last_id = _mockAdvertisements2.default[_mockAdvertisements2.default.length - 1].id;
+					advertisement.id = last_id + 1;
+				} else {
+					advertisement.id = 1;
+				}
+
 				_mockAdvertisements2.default.push(advertisement);
 			}
 
