@@ -1,4 +1,5 @@
 $primary-color: #46BFBD;
+$primary-color-dark: #369493;
 $secondary-color: #ffffff;
 $light-grey: #e5e5e5;
 $dark-grey: #7d7d7d;
@@ -8,6 +9,7 @@ $sidenav-width-negative: -250px;
 
 section {
 	padding-top: 20px;
+	background-color: $light-grey;
 }
 
 #wrapper {
@@ -19,7 +21,7 @@ section {
 	margin-left: $sidenav-width-negative;
 	left: $sidenav-width;
 	width: $sidenav-width;
-	background: $light-grey;
+	background: $dark-grey;
 	position: fixed;
 	height: 100%;
 	overflow-y: auto;
@@ -75,21 +77,21 @@ section {
 			padding-left: 20px;
 			width: $sidenav-width;
 			height: 65px;
-			color: $dark-grey;
+			color: white;
 		}
 
 		a:hover {
-			background-color: $primary-color;
-			border-left: 10px solid $dark-grey;
-			color: white;
+			background-color: $light-grey;
+			border-left: 10px solid $primary-color;
+			color: $dark-grey;
 			text-decoration: none;
 			transition: all 0.4s ease 0s;
 		}
 
 		.active {
-			background-color: $primary-color;
-			border-left: 10px solid $dark-grey;
-			color: white;
+			background-color: $light-grey;
+			border-left: 10px solid $primary-color;
+			color: $dark-grey;
 			text-decoration: none;
 		}
 	}
@@ -102,29 +104,29 @@ section {
 }
 
 .btn-default {
-	background-color: white;
-	color: $primary-color;
+	background-color: $primary-color;
+	color: white;
 	border-color: $primary-color;
 }
 
 .btn-default:hover {
-	background-color: $primary-color;
+	background-color: $primary-color-dark;
 	color: white;
-	border-color: $primary-color;
+	border-color: $primary-color-dark;
 	transition: all 0.4s ease 0s;
 }
 
 .btn-default:active:hover {
-	background-color: $primary-color;
+	background-color: $primary-color-dark;
 	color: white;
-	border-color: $primary-color;
+	border-color: $primary-color-dark;
 	transition: all 0.4s ease 0s;
 }
 
 .btn-default:focus {
-	background-color: $primary-color;
+	background-color: $primary-color-dark;
 	color: white;
-	border-color: $primary-color;
+	border-color: $primary-color-dark;
 	transition: all 0.4s ease 0s;
 }
 

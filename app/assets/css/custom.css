@@ -1,5 +1,6 @@
 section {
-  padding-top: 20px; }
+  padding-top: 20px;
+  background-color: #e5e5e5; }
 
 #wrapper {
   padding-left: 250px;
@@ -9,7 +10,7 @@ section {
   margin-left: -250px;
   left: 250px;
   width: 250px;
-  background: #e5e5e5;
+  background: #7d7d7d;
   position: fixed;
   height: 100%;
   overflow-y: auto;
@@ -48,17 +49,17 @@ section {
       padding-left: 20px;
       width: 250px;
       height: 65px;
-      color: #7d7d7d; }
+      color: white; }
     .sidebar-nav li a:hover {
-      background-color: #46BFBD;
-      border-left: 10px solid #7d7d7d;
-      color: white;
+      background-color: #e5e5e5;
+      border-left: 10px solid #46BFBD;
+      color: #7d7d7d;
       text-decoration: none;
       transition: all 0.4s ease 0s; }
     .sidebar-nav li .active {
-      background-color: #46BFBD;
-      border-left: 10px solid #7d7d7d;
-      color: white;
+      background-color: #e5e5e5;
+      border-left: 10px solid #46BFBD;
+      color: #7d7d7d;
       text-decoration: none; }
 
 .search-input {
@@ -67,26 +68,26 @@ section {
   border-radius: 25px; }
 
 .btn-default {
-  background-color: white;
-  color: #46BFBD;
+  background-color: #46BFBD;
+  color: white;
   border-color: #46BFBD; }
 
 .btn-default:hover {
-  background-color: #46BFBD;
+  background-color: #369493;
   color: white;
-  border-color: #46BFBD;
+  border-color: #369493;
   transition: all 0.4s ease 0s; }
 
 .btn-default:active:hover {
-  background-color: #46BFBD;
+  background-color: #369493;
   color: white;
-  border-color: #46BFBD;
+  border-color: #369493;
   transition: all 0.4s ease 0s; }
 
 .btn-default:focus {
-  background-color: #46BFBD;
+  background-color: #369493;
   color: white;
-  border-color: #46BFBD;
+  border-color: #369493;
   transition: all 0.4s ease 0s; }
 
 .modal-header {

@@ -3,13 +3,10 @@ class AddAdModalCtrl {
 		'ngInject';
 
 		this._Advertisement = Advertisement;
-		console.log(this._Advertisement);
 	}
 
 	submitForm() {
 		this.errors = this._Advertisement.createNewAdvertisement(this.advertisement);
-
-		console.log(this.errors);
 
 		if(this.errors.length == 0) {
 			this.dismiss();

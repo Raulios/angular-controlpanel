@@ -16,7 +16,6 @@ class HomeCtrl {
   }
 
   openEditAdModal(ad) {
-    console.log(ad);
     this._$uibModal.open({
       animation: true,
       component: 'editAdModal',
