@@ -94,21 +94,29 @@ export default class Advertisement {
 	createNewAdvertisement(advertisement) {
 		var errors = [];
 
-		if(!advertisement.instrument) {
+		if(advertisement != undefined) {
+			if(!advertisement.instrument) {
+				errors.push('Instrument field required');
+			}
+
+			if(!advertisement.genre) {
+				errors.push('Genre field required');
+			}
+
+			if(!advertisement.city) {
+				errors.push('City field required');
+			}
+
+			if(!advertisement.country) {
+				errors.push('Country field required');
+			}
+		} else {
 			errors.push('Instrument field required');
-		}
-
-		if(!advertisement.genre) {
 			errors.push('Genre field required');
-		}
-
-		if(!advertisement.city) {
 			errors.push('City field required');
-		}
-
-		if(!advertisement.country) {
 			errors.push('Country field required');
 		}
+		
 
 		if(errors.length == 0) {
 			var last_id = Advertisements[Advertisements.length - 1].id;

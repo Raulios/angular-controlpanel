@@ -761,19 +761,26 @@ var Advertisement = function () {
 		value: function createNewAdvertisement(advertisement) {
 			var errors = [];
 
-			if (!advertisement.instrument) {
+			if (advertisement != undefined) {
+				if (!advertisement.instrument) {
+					errors.push('Instrument field required');
+				}
+
+				if (!advertisement.genre) {
+					errors.push('Genre field required');
+				}
+
+				if (!advertisement.city) {
+					errors.push('City field required');
+				}
+
+				if (!advertisement.country) {
+					errors.push('Country field required');
+				}
+			} else {
 				errors.push('Instrument field required');
-			}
-
-			if (!advertisement.genre) {
 				errors.push('Genre field required');
-			}
-
-			if (!advertisement.city) {
 				errors.push('City field required');
-			}
-
-			if (!advertisement.country) {
 				errors.push('Country field required');
 			}
 
